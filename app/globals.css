@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+:root {
+  --font-inter: "Inter", system_ui, sans-serif;
+  --font-space: "Space Grotesk", "Inter", sans-serif;
+
+  /* AuditForge Palette */
+  --navy: #0A1328;
+  --navy-light: #13264A;
+  --indigo: #6C5CE7;
+  --indigo-light: #8B7FF3;
+  --gold: #D4AF37;
+  --gold-light: #E8C766;
+  --text: #F8F9FC;
+  --text-muted: #9BA3B7;
+  --border: rgba(108, 92, 231, 0.2);
+}
+
+body {
+  font-family: var(--font-inter);
+}
+
+h1, h2, .heading {
+  font-family: var(--font-space);
+}
+
+/* Premium Dark Theme */
+.glass {
+  background: rgba(19, 38, 74, 0.6);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+}
+
+.btn-primary {
+  background: var(--indigo);
+  color: white;
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btn-primary:hover {
+  background: var(--indigo-light);
+  transform: translateY(-1px);
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: #0A1328;
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btn-gold:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+}
+
+.section {
+  border-bottom: 1px solid var(--border);
+}
+
+.feature-card {
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), 
+              border-color 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--indigo);
+}
+
+.stoic {
+  font-feature-settings: "tnum";
+  letter-spacing: -0.01em;
+}
