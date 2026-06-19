@@ -1,12 +1,20 @@
 'use client';
 
 import React from 'react';
+import { useTheme } from 'next-themes';
 
 export default function AuditForge() {
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-[#0A1328] text-white">
+    <div className="min-h-screen bg-[#0A1328] dark:bg-[#0A1328] text-white">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#0A1328]/90 backdrop-blur-xl">
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#0A1328]/90 dark:bg-[#0A1328]/90 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-[#6C5CE7] flex items-center justify-center">
@@ -24,6 +32,15 @@ export default function AuditForge() {
             <a href="#about" className="text-white/80 hover:text-white transition-colors">About</a>
             <a href="#demo" className="px-5 py-2.5 rounded-full border border-white/20 hover:bg-white/5 transition-all text-sm">Try Demo</a>
             <a href="mailto:forge@mvforge.io?subject=AuditForge%20Assessment" className="btn-primary px-6 py-2.5 rounded-full text-sm font-medium">Book Assessment</a>
+
+            {/* Dark Mode Toggle */}
+            <button
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className="p-2 rounded-full border border-white/20 hover:bg-white/5 transition-all"
+              aria-label="Toggle dark mode"
+            >
+              {mounted && (theme === 'dark' ? '☀️' : '🌙')}
+            </button>
           </div>
         </div>
       </nav>
@@ -101,107 +118,61 @@ export default function AuditForge() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {/* Starter */}
-            <div className="glass rounded-3xl p-9 border border-white/10 flex flex-col">
-              <div className="text-[#D4AF37] text-sm tracking-[2px] mb-1">STARTER</div>
-              <div className="text-6xl font-semibold tracking-[-3px] mt-2">$890</div>
-              <div className="text-[#9BA3B7] mt-1">per month</div>
-              <ul className="mt-10 space-y-4 text-[#9BA3B7] flex-1">
-                <li className="flex items-center gap-3"><span className="text-[#6C5CE7]">•</span> Up to 3 connected entities</li>
-                <li className="flex items-center gap-3"><span className="text-[#6C5CE7]">•</span> Invoice Auditor + Reconciliation</li>
-                <li className="flex items-center gap-3"><span className="text-[#6C5CE7]">•</span> Weekly Intelligence Brief</li>
-                <li className="flex items-center gap-3"><span className="text-[#6C5CE7]">•</span> Email support</li>
-              </ul>
-              <a href="mailto:forge@mvforge.io?subject=AuditForge%20Starter" className="mt-10 block text-center py-3.5 rounded-2xl border border-white/30 hover:bg-white/5 transition-colors">Get Started</a>
-            </div>
-
-            {/* Professional - Featured */}
-            <div className="glass rounded-3xl p-9 border border-[#6C5CE7] flex flex-col relative">
-              <div className="absolute -top-3 right-7 px-4 py-0.5 text-xs tracking-[1.5px] bg-[#6C5CE7] text-white rounded-full">MOST POPULAR</div>
-              <div className="text-[#D4AF37] text-sm tracking-[2px] mb-1">PROFESSIONAL</div>
-              <div className="text-6xl font-semibold tracking-[-3px] mt-2">$1,890</div>
-              <div className="text-[#9BA3B7] mt-1">per month</div>
-              <ul className="mt-10 space-y-4 text-[#9BA3B7] flex-1">
-                <li className="flex items-center gap-3"><span className="text-[#6C5CE7]">•</span> Up to 12 connected entities</li>
-                <li className="flex items-center gap-3"><span className="text-[#6C5CE7]">•</span> Full feature suite</li>
-                <li className="flex items-center gap-3"><span className="text-[#6C5CE7]">•</span> Profitability Engine + Anomaly Detection</li>
-                <li className="flex items-center gap-3"><span className="text-[#6C5CE7]">•</span> Priority support + monthly review call</li>
-              </ul>
-              <a href="mailto:forge@mvforge.io?subject=AuditForge%20Professional" className="mt-10 block text-center py-3.5 rounded-2xl bg-[#6C5CE7] hover:bg-[#8B7FF3] transition-colors">Book Assessment</a>
-            </div>
-
-            {/* Enterprise */}
-            <div className="glass rounded-3xl p-9 border border-white/10 flex flex-col">
-              <div className="text-[#D4AF37] text-sm tracking-[2px] mb-1">ENTERPRISE</div>
-              <div className="text-6xl font-semibold tracking-[-3px] mt-2">Custom</div>
-              <div className="text-[#9BA3B7] mt-1">tailored for scale</div>
-              <ul className="mt-10 space-y-4 text-[#9BA3B7] flex-1">
-                <li className="flex items-center gap-3"><span className="text-[#6C5CE7]">•</span> Unlimited entities</li>
-                <li className="flex items-center gap-3"><span className="text-[#6C5CE7]">•</span> Advanced AI models & custom rules</li>
-                <li className="flex items-center gap-3"><span className="text-[#6C5CE7]">•</span> Dedicated support + SLA</li>
-                <li className="flex items-center gap-3"><span className="text-[#6C5CE7]">•</span> On-premise or private cloud options</li>
-              </ul>
-              <a href="mailto:forge@mvforge.io?subject=AuditForge%20Enterprise" className="mt-10 block text-center py-3.5 rounded-2xl border border-white/30 hover:bg-white/5 transition-colors">Contact Us</a>
-            </div>
+            {[
+              { name: "Starter", price: "$299", desc: "Monthly", features: ["Weekly audit reports", "Basic anomaly detection", "Email support"] },
+              { name: "Professional", price: "$599", desc: "Monthly", features: ["Real-time reconciliation", "Profitability engine", "Priority support", "Custom alerts"] },
+              { name: "Enterprise", price: "Custom", desc: "", features: ["Full audit suite", "Dedicated analyst", "API access", "On-site workshops"] },
+            ].map((tier, i) => (
+              <div key={i} className="glass rounded-3xl p-9 border border-white/10 flex flex-col">
+                <div className="mb-6">
+                  <div className="font-semibold text-2xl tracking-tight">{tier.name}</div>
+                  <div className="mt-4 flex items-baseline">
+                    <span className="text-5xl font-semibold tracking-[-2px]">{tier.price}</span>
+                    <span className="text-[#9BA3B7] ml-2">{tier.desc}</span>
+                  </div>
+                </div>
+                <ul className="space-y-3 mb-8 text-sm text-[#9BA3B7]">
+                  {tier.features.map((f, idx) => (
+                    <li key={idx}>• {f}</li>
+                  ))}
+                </ul>
+                <a href="mailto:forge@mvforge.io?subject=AuditForge%20Assessment" className="btn-primary mt-auto text-center px-6 py-3 rounded-full">
+                  Get Started
+                </a>
+              </div>
+            ))}
           </div>
-        </div>
-      </section>
-
-      {/* Assessment / Demo */}
-      <section id="demo" className="py-24 px-6 border-t border-white/10">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="text-[#D4AF37] text-sm tracking-[3px] mb-4">INTERACTIVE EXPERIENCE</div>
-          <h2 className="text-6xl font-semibold tracking-[-2.5px] leading-none mb-6">See what AuditForge sees.</h2>
-          <p className="text-[#9BA3B7] text-xl max-w-md mx-auto">Try a live, anonymized demonstration of the Invoice Auditor and Reconciliation engine.</p>
-
-          <div className="mt-14">
-            <a href="mailto:forge@mvforge.io?subject=AuditForge%20Demo%20Request" className="inline-flex items-center gap-3 px-9 py-4 rounded-2xl bg-white text-[#0A1328] hover:bg-[#D4AF37] font-medium transition-all text-lg">
-              Request Private Demo
-            </a>
-          </div>
-          <div className="mt-4 text-sm text-white/40">15-minute walkthrough • No obligation</div>
-        </div>
-      </section>
-
-      {/* About */}
-      <section id="about" className="py-24 px-6 bg-[#13264A]">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="text-[#D4AF37] text-sm tracking-[3px] mb-4">ABOUT</div>
-          <h2 className="text-5xl font-semibold tracking-[-2px] leading-tight mb-8">Built by service business owners, for service business owners.</h2>
-          <p className="text-xl text-[#9BA3B7] max-w-2xl mx-auto">
-            AuditForge is a flagship product of MVForge Systems — a veteran-owned technology company based in Ohio. 
-            We design calm, precise software that strengthens financial oversight without adding operational noise.
-          </p>
-          <div className="mt-10 text-sm text-white/50">Self-ownership through technical mastery.</div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-20 px-6 border-t border-white/10">
-        <div className="max-w-xl mx-auto text-center">
-          <h3 className="text-4xl font-semibold tracking-[-1.5px]">Ready to reclaim your time?</h3>
-          <p className="mt-4 text-[#9BA3B7]">Book your private AuditForge assessment today.</p>
-          <a href="mailto:forge@mvforge.io?subject=AuditForge%20Assessment" className="btn-gold mt-9 inline-block px-12 py-4 rounded-2xl text-lg font-medium">Schedule Assessment</a>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 py-16 px-6 text-sm">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-y-8">
-          <div>
-            <div className="flex items-center gap-3">
-              <div className="w-7 h-7 rounded-lg bg-[#6C5CE7] flex items-center justify-center"><span className="text-white text-lg font-semibold tracking-[-1px]">A</span></div>
-              <span className="font-semibold text-lg tracking-tight">AuditForge</span>
+      <footer className="border-t border-white/10 py-16 px-6 text-sm bg-[#0A1328]">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between gap-y-10">
+            <div>
+              <div className="flex items-center gap-3">
+                <div className="w-7 h-7 rounded-lg bg-[#6C5CE7] flex items-center justify-center">
+                  <span className="text-white text-lg font-semibold tracking-[-1px]">A</span>
+                </div>
+                <span className="font-semibold text-lg tracking-tight">AuditForge</span>
+              </div>
+              <div className="text-white/40 mt-2">MVForge Systems • Ohio, USA</div>
             </div>
-            <div className="text-white/40 mt-2">MVForge Systems • Ohio, USA</div>
+
+            <div className="space-y-1.5 text-[#9BA3B7]">
+              <a href="mailto:forge@mvforge.io" className="block hover:text-white">forge@mvforge.io</a>
+              <a href="tel:+193****2945" className="block hover:text-white">(937) 729-2945</a>
+            </div>
+
+            <div className="text-[#9BA3B7] space-y-1.5 md:text-right">
+              <a href="/privacy" className="block hover:text-white">Privacy Policy</a>
+              <a href="/terms" className="block hover:text-white">Terms of Service</a>
+            </div>
           </div>
-          
-          <div className="space-y-2 text-[#9BA3B7]">
-            <a href="mailto:forge@mvforge.io" className="block hover:text-white">forge@mvforge.io</a>
-            <a href="tel:+193****2945" className="block hover:text-white">(937) 729-2945</a>
+
+          <div className="mt-12 pt-8 border-t border-white/10 text-white/40 text-xs md:text-right">
+            © {new Date().getFullYear()} MVForge Systems. All rights reserved.
           </div>
-          
-          <div className="text-white/40 md:text-right">© {new Date().getFullYear()} MVForge Systems. All rights reserved.</div>
         </div>
       </footer>
     </div>
